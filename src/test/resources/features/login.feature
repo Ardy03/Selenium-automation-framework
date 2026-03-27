@@ -1,11 +1,11 @@
 Feature: Login Feature
 
-  Scenario: Login valid
+  Scenario Outline: Login dengan berbagai user
     Given user membuka halaman login
-    When user login dengan username "tomsmith" dan password "SuperSecretPassword!"
-    Then user berhasil login
+    When user login dengan username "<username>" dan password "<password>"
+    Then user melihat hasil "<expected>"
 
-  Scenario: Login invalid password
-    Given user membuka halaman login
-    When user login dengan username "tomsmith" dan password "wrongpass"
-    Then muncul pesan "Your password is invalid!"
+    Examples:
+      | username  | password              | expected |
+      | tomsmith  | SuperSecretPassword! | success  |
+      | wronguser | wrongpass            | error    |
